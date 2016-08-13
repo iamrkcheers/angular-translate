@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Translation App</title>
+    <script src="angular.min.js"></script>
+    <script src="angular-translate.min.js"></script>
+    <script>
+        var app=angular.module("app",["pascalprecht.translate"]);
+        app.config(function($translateProvider){
+            $translateProvider.translations("en",{
+                head:"This is a random heading",
+                para:"Hello ! How are you people today ?!?",
+                b_en:"English",
+                b_du:"German",
+                b_es:"Spanish",
+                foot:"Thank You !"
+            });
+            $translateProvider.translations("du",{
+                head:"Dies ist eine zufällige Überschrift",
+                para:"Hallo ! Wie geht es Ihnen heute Leute?!?",
+                b_en:"Englisch",
+                b_du:"Deutsche",
+                b_es:"Spanisch",
+                foot:"Danke !"
+            });
+            $translateProvider.translations("es",{
+                head:"Se trata de una partida al azar",
+                para:"Hola ! ¿Cómo estás personas hoy en día?!?",
+                b_en:"Inglés",
+                b_du:"alemán",
+                b_es:"Español",
+                foot:"Gracias !"
+            });
+            $translateProvider.preferredLanguage("en");
+        });
+        app.controller("ctrl",function($scope,$translate){
+            $scope.changeLang=function(key){
+                $translate.use(key);
+            }
+        });
+    </script>
+</head>
+<body ng-app="app" ng-controller="ctrl">
+    <h1 translate="head"></h1>
+    <h3 translate="para"></h3><br>
+    <button translate="b_en" ng-click="changeLang('en')"></button>
+    <button translate="b_du" ng-click="changeLang('du')"></button>
+    <button translate="b_es" ng-click="changeLang('es')"></button><br>
+    <h3 translate="foot"></h3>
+</body>
+</html>
